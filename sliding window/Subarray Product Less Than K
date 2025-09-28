@@ -1,0 +1,20 @@
+713 Subarray Product Less Than K
+Input: 
+nums = [10,5,2,6], k = 100
+Output: 
+8
+
+code:-
+class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        prod = 1          
+        left = 0          
+        count = 0         
+        for i in range(len(nums)):
+            prod *= nums[i]          
+            while prod >= k and left <= i:
+                prod //= nums[left]  
+                left += 1
+            count += (i - left + 1)
+        
+        return count
