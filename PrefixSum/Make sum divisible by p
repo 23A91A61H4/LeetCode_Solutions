@@ -1,0 +1,33 @@
+1590 Make sum divisible by p
+Input:
+ nums = [3,1,4,2], p = 6
+Output: 
+1
+
+Code:-
+class Solution:
+    def minSubarray(self, nums: List[int], p: int) -> int:
+        total = sum(nums)
+        target = total % p
+        if target == 0:
+            return 0
+        prefix_mod = {0: -1}
+        curr_sum = 0
+        min_length = len(nums)
+        for i, num in enumerate(nums):
+            curr_sum = (curr_sum + num) % p
+            needed=(curr_sum-target+p)%p
+            if needed in prefix_mod:
+                min_length=min(min_length,i-prefix_mod[needed])
+            prefix_mod[curr_sum] =i
+        return min_length if min_length < len(nums) else -1
+
+Expplantion:
+
+You have an array of positive integers nums and an integer p.
+
+The goal is to remove the smallest contiguous subarray so that the sum of the remaining numbers is divisible by p.
+
+You cannot remove the whole array (at least one number must remain).
+
+Return the length of the smallest subarray to remove, or -1 if it’s not possible.
