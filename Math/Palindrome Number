@@ -1,0 +1,14 @@
+9. Palindrome Number
+
+Input:
+      x = 121
+Output:
+      true
+
+Code:
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        return str(x) == str(x)[::-1]
+
+
+Explanation: 121 reads as 121 from left to right and from right to left.
